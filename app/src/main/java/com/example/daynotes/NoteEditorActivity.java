@@ -27,9 +27,7 @@ public class NoteEditorActivity extends AppCompatActivity {
         editText=findViewById(R.id.editText);
         button=findViewById(R.id.button);
         button.setOnClickListener(v -> {
-            Intent  intent=new Intent(getApplicationContext(),MainActivity.class);
-            startActivity(intent);
-            editText.append("nunya");
+            finish();
         });
         Intent intent=getIntent();
         noteId=intent.getIntExtra("noteId",-1);

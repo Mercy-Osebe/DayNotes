@@ -1,8 +1,5 @@
 package com.example.daynotes;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -17,12 +14,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 
 public class MainActivity extends AppCompatActivity {
     ListView listView;
-    static ArrayList<String> notes;
+    static ArrayList<String> notes =new ArrayList<>();
     static ArrayAdapter <String> arrayAdapter;
 
     @Override
@@ -48,26 +48,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         listView=findViewById(R.id.listView);
-        notes=new ArrayList<>();
-
-
-        arrayAdapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,notes);
-
-        listView.setAdapter(arrayAdapter);
-        notes.add("hello");
-
-
-        SharedPreferences sharedPreferences2=getApplicationContext().getSharedPreferences("com.example.daynotes", Context.MODE_PRIVATE);
-        HashSet<String> set1= (HashSet<String>) sharedPreferences2.getStringSet("notes1",null);
-        if(set1==null){
-            notes.add("New item");
-        }
-        else{
-            notes=new ArrayList<>(set1);
-        }
-
-
-
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -105,6 +85,24 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        arrayAdapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,notes);
+        listView.setAdapter(arrayAdapter);
+
+        SharedPreferences sharedPreferences2=getApplicationContext().getSharedPreferences("com.example.daynotes", Context.MODE_PRIVATE);
+        HashSet<String> set1 = (HashSet<String>) sharedPreferences2.getStringSet("notes1",null);
+
+        if(set1==null){
+            notes.add("New item");
+        }
+        else{
+            notes=new ArrayList<>(set1);
+        }
 
     }
 }

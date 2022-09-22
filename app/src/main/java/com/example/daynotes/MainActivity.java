@@ -40,6 +40,14 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
+        if(item.getItemId()==R.id.delete_notes){
+            notes.clear();
+            arrayAdapter.notifyDataSetChanged();
+            SharedPreferences sharedPreferences2=getApplicationContext().getSharedPreferences("com.example.daynotes", Context.MODE_PRIVATE);
+            HashSet<String> set1=new HashSet<>(MainActivity.notes);//generate set from arraylist
+            sharedPreferences2.edit().putStringSet("notes1",set1).apply();
+            return true;
+        }
         return false;
     }
 
@@ -104,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
         }
         arrayAdapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,notes);
         listView.setAdapter(arrayAdapter);
+
 
 
     }

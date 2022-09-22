@@ -6,4 +6,6 @@
         android:id="@+id/add_note"/>
     <item android:title="Delete note"
         android:id="@+id/delete_notes"/>
+    <item android:title="Calendar"
+        android:id="@+id/calendar"/>
 </menu>

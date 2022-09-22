@@ -27,6 +27,7 @@ public class NoteEditorActivity extends AppCompatActivity {
         editText=findViewById(R.id.editText);
         button=findViewById(R.id.button);
         button.setOnClickListener(v -> {
+//            editText.append();
             finish();
         });
         Intent intent=getIntent();

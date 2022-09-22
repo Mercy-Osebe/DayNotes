@@ -91,8 +91,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        arrayAdapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,notes);
-        listView.setAdapter(arrayAdapter);
+
 
         SharedPreferences sharedPreferences2=getApplicationContext().getSharedPreferences("com.example.daynotes", Context.MODE_PRIVATE);
         HashSet<String> set1 = (HashSet<String>) sharedPreferences2.getStringSet("notes1",null);
@@ -103,6 +102,9 @@ public class MainActivity extends AppCompatActivity {
         else{
             notes=new ArrayList<>(set1);
         }
+        arrayAdapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,notes);
+        listView.setAdapter(arrayAdapter);
+
 
     }
 }
